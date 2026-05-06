@@ -112,10 +112,10 @@ class PeakParser(object):
 
         if not len(intens) == 0:
             ax1.stem(x, y, linefmt="k-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(ri2) == 0:
             ax1.stem(x1, y2, linefmt="C3-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
 
         plt.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
         ax1.xaxis.set_major_formatter(plt.FuncFormatter(
@@ -133,10 +133,10 @@ class PeakParser(object):
 
         if not len(intens) == 0:
             ax2.stem(x, y, linefmt="k-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(ri2) == 0:
             ax2.stem(x1, y2, linefmt="C3-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
 
         plt.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
         ax2.xaxis.set_major_formatter(plt.FuncFormatter(
