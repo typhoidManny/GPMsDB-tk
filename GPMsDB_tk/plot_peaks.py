@@ -100,22 +100,22 @@ class PlotPeaks(object):
 
         if not len(peaks0) == 0:
             ax1.stem(x, y, linefmt="k-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks1) == 0:
             ax1.stem(x1, y1, linefmt="C0-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks2) == 0:
             ax1.stem(x2, y2, linefmt="C1-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks3) == 0:
             ax1.stem(x3, y3, linefmt="C2-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks4) == 0:
             ax1.stem(x4, y4, linefmt="C3-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks5) == 0:
             ax1.stem(x5, y5, linefmt="C4-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
 
         plt.hlines(l1, 0, 20000, 'C0', linestyles='dashed', lw=0.5)
         ax1.text(50, l1, "1% line", size=10, color='C0')
@@ -142,22 +142,22 @@ class PlotPeaks(object):
 
         if not len(peaks0) == 0:
             ax2.stem(x, y, linefmt="k-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks1) == 0:
             ax2.stem(x1, y1, linefmt="C0-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks2) == 0:
             ax2.stem(x2, y2, linefmt="C1-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks3) == 0:
             ax2.stem(x3, y3, linefmt="C2-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks4) == 0:
             ax2.stem(x4, y4, linefmt="C3-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
         if not len(peaks5) == 0:
             ax2.stem(x5, y5, linefmt="C4-", basefmt=" ",
-                     markerfmt=" ", use_line_collection=True)
+                     markerfmt=" ")
 
         plt.hlines(l1, 0, 20000, 'C0', linestyles='dashed', lw=0.5)
         ax2.text(50, l1, "1% line", size=10, color='C0')
