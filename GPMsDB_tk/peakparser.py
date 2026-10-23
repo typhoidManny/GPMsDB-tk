@@ -11,8 +11,13 @@ __status__ = 'Development'
 import os
 import sys
 import logging
+import warnings
+
+logging.getLogger('matplotlib.fontmanager').setLevel(logging.ERROR)
+warnings.filterwarnings('ignore', category=UserWarning, module='matplotlib.font_manager')
 
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 plt.rcParams.update({'figure.max_open_warning': 0})
 
 from GPMsDB_tk.common import PeakLoader
@@ -101,14 +106,14 @@ class PeakParser(object):
                     "Total number of peaks: " + str(len(intens)) + "\n" +
                     "Reference genome: " + str(genome_ref))
 
-        fig, ax = plt.subplots()
-        plt.figure(figsize=(15, 10)).patch.set_facecolor('white')
-        #plt.suptitle(title, fontsize = 13, x=fig.subplotpars.left, ha = 'left')
         plt.rcParams["font.size"] = 12
-        #plt.rcParams['font.family'] = 'sans-serif'
-        #plt.rcParams['font.sans-serif'] = ['Arial']
+        plt.rcParams['font.family'] = 'sans-serif'
+        plt.rcParams['font.sans-serif'] = ['DejaVu Sans','Liberation Sans']
+        plt.rcParams['figure.max_open_warning'] = 0
 
-        ax1 = plt.subplot(2, 1, 1)
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15,10))
+        fig.patch.set_facecolor('white')
+        #plt.suptitle(title, fontsize = 13, x=fig.subplotpars.left, ha = 'left')
 
         if not len(intens) == 0:
             ax1.stem(x, y, linefmt="k-", basefmt=" ",
@@ -117,19 +122,17 @@ class PeakParser(object):
             ax1.stem(x1, y2, linefmt="C3-", basefmt=" ",
                      markerfmt=" ")
 
-        plt.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
+        ax1.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
         ax1.xaxis.set_major_formatter(plt.FuncFormatter(
             lambda x, loc: "{:,}".format(int(x))))
-        plt.ylim(0,)
-        plt.xlim(0, 15000)
-        plt.gca().spines['right'].set_visible(False)
-        plt.gca().spines['top'].set_visible(False)
-        plt.xlabel("m/z", fontsize=14)
-        plt.ylabel("relative intensity (linear, %)", fontsize=14)
+        ax1.ylim(0,)
+        ax1.xlim(0, 15000)
+        ax1.spines['right'].set_visible(False)
+        ax1.spines['top'].set_visible(False)
+        ax1.set_xlabel("m/z", fontsize=14)
+        ax1.set_ylabel("relative intensity (linear, %)", fontsize=14)
 
-        ax2 = plt.subplot(2, 1, 2)
-
-        plt.yscale('log')
+        ax2.set_yscale('log')
 
         if not len(intens) == 0:
             ax2.stem(x, y, linefmt="k-", basefmt=" ",
@@ -138,12 +141,12 @@ class PeakParser(object):
             ax2.stem(x1, y2, linefmt="C3-", basefmt=" ",
                      markerfmt=" ")
 
-        plt.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
+        ax2.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
         ax2.xaxis.set_major_formatter(plt.FuncFormatter(
             lambda x, loc: "{:,}".format(int(x))))
-        plt.xlim(0, 15000)
-        plt.xlabel("m/z", fontsize=14)
-        plt.ylabel("relative intensity (log, %)", fontsize=14)
+        ax2.xlim(0, 15000)
+        ax2.xlabel("m/z", fontsize=14)
+        ax2.ylabel("relative intensity (log, %)", fontsize=14)
 
         result = sorted(fd.items(), key=lambda x: x[0], reverse=True)
         dic = dict(result)

@@ -12,8 +12,13 @@ __status__ = 'Development'
 import os
 import sys
 import logging
+import warnings
+
+logging.getLogger('matplotlib.fontmanager').setLevel(logging.ERROR)
+warnings.filterwarnings('ignore', category=UserWarning, module='matplotlib.font_manager')
 
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 plt.rcParams.update({'figure.max_open_warning': 0})
 
 
@@ -88,15 +93,15 @@ class PlotPeaks(object):
                     "<0.01%, " + str(len(peaks5)) + " peaks\n" +
                     "Black plots: higer than 1%, blue: 1-0.5%, orange: 0.5-0.2%, green: 0.2-0.05, red: 0.05-0.01%, purple: < 0.01%")
 
-        fig, ax = plt.subplots()
-        plt.figure(figsize=(15, 10)).patch.set_facecolor('white')
-        plt.suptitle(title, fontsize=12, x=fig.subplotpars.left, ha='left')
-
-        plt.rcParams["font.size"] = 12
         plt.rcParams['font.family'] = 'sans-serif'
-        plt.rcParams['font.sans-serif'] = ['Arial']
+        plt.rcParams['font.sans-serif'] = ['DejaVu Sans','Liberation Sans']
+        plt.rcParams["font.size"] = 12
+        
+        fm._load_fontmanager(try_read_cache =False)
 
-        ax1 = plt.subplot(2, 1, 1)
+        fig, (ax1,ax2) = plt.subplots(2, 1, figsize=(15,10))
+        fig.patch.set_facecolor('white')
+        fig.suptitle(title, fontsize=12, x=fig.subplotpars.left, ha='left')
 
         if not len(peaks0) == 0:
             ax1.stem(x, y, linefmt="k-", basefmt=" ",
@@ -117,28 +122,26 @@ class PlotPeaks(object):
             ax1.stem(x5, y5, linefmt="C4-", basefmt=" ",
                      markerfmt=" ")
 
-        plt.hlines(l1, 0, 20000, 'C0', linestyles='dashed', lw=0.5)
+        ax1.hlines(l1, 0, 20000, 'C0', linestyles='dashed', lw=0.5)
         ax1.text(50, l1, "1% line", size=10, color='C0')
-        plt.hlines(l2, 0, 20000, 'C1', linestyles='dashed', lw=0.5)
+        ax1.hlines(l2, 0, 20000, 'C1', linestyles='dashed', lw=0.5)
         ax1.text(50, l2, "0.5% line", size=10, color='C1')
-        plt.hlines(l3, 0, 20000, 'C2', linestyles='dashed', lw=0.5)
+        ax1.hlines(l3, 0, 20000, 'C2', linestyles='dashed', lw=0.5)
         ax1.text(50, l3, "0.2% line", size=10, color='C2')
-        plt.hlines(l4, 0, 20000, 'C3', linestyles='dashed', lw=0.5)
+        ax1.hlines(l4, 0, 20000, 'C3', linestyles='dashed', lw=0.5)
         ax1.text(50, l4, "0.05% line", size=10, color='C4')
-        plt.hlines(l5, 0, 20000, 'C3', linestyles='dashed', lw=0.5)
+        ax1.hlines(l5, 0, 20000, 'C3', linestyles='dashed', lw=0.5)
         ax1.text(50, l5, "0.01% line", size=10, color='C4')
 
-        plt.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
-        ax.xaxis.set_major_formatter(plt.FuncFormatter(
+        ax1.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
+        ax1.xaxis.set_major_formatter(plt.FuncFormatter(
             lambda x, loc: "{:,}".format(int(x))))
-        plt.ylim(0,)
-        plt.xlim(0, 15000)
-        plt.xlabel("m/z", fontsize=14)
-        plt.ylabel("intensity (linear, -)", fontsize=14)
+        ax1.set_ylim(0,)
+        ax1.set_xlim(0, 15000)
+        ax1.set_xlabel("m/z", fontsize=14)
+        ax1.set_ylabel("intensity (linear, -)", fontsize=14)
 
-        ax2 = plt.subplot(2, 1, 2)
-
-        plt.yscale('log')
+        ax2.set_yscale('log')
 
         if not len(peaks0) == 0:
             ax2.stem(x, y, linefmt="k-", basefmt=" ",
@@ -159,23 +162,23 @@ class PlotPeaks(object):
             ax2.stem(x5, y5, linefmt="C4-", basefmt=" ",
                      markerfmt=" ")
 
-        plt.hlines(l1, 0, 20000, 'C0', linestyles='dashed', lw=0.5)
+        ax2.hlines(l1, 0, 20000, 'C0', linestyles='dashed', lw=0.5)
         ax2.text(50, l1, "1% line", size=10, color='C0')
-        plt.hlines(l2, 0, 20000, 'C1', linestyles='dashed', lw=0.5)
+        ax2.hlines(l2, 0, 20000, 'C1', linestyles='dashed', lw=0.5)
         ax2.text(50, l2, "0.5% line", size=10, color='C1')
-        plt.hlines(l3, 0, 20000, 'C2', linestyles='dashed', lw=0.5)
+        ax2.hlines(l3, 0, 20000, 'C2', linestyles='dashed', lw=0.5)
         ax2.text(50, l3, "0.2% line", size=10, color='C2')
-        plt.hlines(l4, 0, 20000, 'C3', linestyles='dashed', lw=0.5)
+        ax2.hlines(l4, 0, 20000, 'C3', linestyles='dashed', lw=0.5)
         ax2.text(50, l4, "0.05% line", size=10, color='C3')
-        plt.hlines(l5, 0, 20000, 'C4', linestyles='dashed', lw=0.5)
+        ax2.hlines(l5, 0, 20000, 'C4', linestyles='dashed', lw=0.5)
         ax2.text(50, l5, "0.01% line", size=10, color='C4')
 
-        plt.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
+        ax2.grid(True, axis="y", color='black', linestyle=':', linewidth=0.5)
         ax2.xaxis.set_major_formatter(plt.FuncFormatter(
             lambda x, loc: "{:,}".format(int(x))))
-        plt.xlim(0, 15000)
-        plt.xlabel("m/z", fontsize=14)
-        plt.ylabel("intensity (log, -)", fontsize=14)
+        ax2.set_xlim(0, 15000)
+        ax2.set_xlabel("m/z", fontsize=14)
+        ax2.set_ylabel("intensity (log, -)", fontsize=14)
 
         plt.savefig(outfile, dpi=figdpi, format=filetype,
                     bbox_inches='tight', pad_inches=0.1)
