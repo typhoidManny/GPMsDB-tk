@@ -66,6 +66,11 @@ Please report bugs through the GitHub issues system, or contact Yuji Sekiguchi (
 
 ## Copyright
 
-Copyright (C) 2023 Yuji Sekiguchi, National Institute of Advanced Industrial Science and Technology (AIST)
+This project is a fork of [Yuki Sekiguchi](https://github.com/ysekig/GPMsDB-tk)'s work under the same name and is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for the full text.
 
-This package is under the conditions of the GNU General Public License (Version 3). See LICENSE for further details.
+### Copyright Notices
+* Copyright (c) 2026 Manuel Escalera (modifications and additions)
+* Copyright (c) 2023 Yuji Sekiguchi, National Institute of Advanced Industrial Science and Technology (AIST) (original work)
+
+### Modifications
+* Forked in 2026 by Manuel Escalera. Modified to include ......

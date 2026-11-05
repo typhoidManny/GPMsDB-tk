@@ -1,0 +1,4 @@
+# PEP 517 build configuration to replace deprecated direct `python setup.py install` invocations
+[build-system]
+requires = ["setuptools>=61.0", "cython"]
+build-backend = "setuptools.build_meta"
