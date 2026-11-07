@@ -13,6 +13,8 @@ Prerequisites
 * Cython (version 0.29.1 or higher)
 * scipy (version 1.7.3 or higher)
 * matplotlib (version 3.5.0 or higher)
+* gcc
+* python3-dev
 
 In the source directory, the following command will compile and install the software in your python environment.
 ```bash
@@ -20,7 +22,6 @@ git clone https://github.com/ysekig/GPMsDB-tk
 cd GPMsDB-tk
 python setup.py install
 ```
-During the installation, you may see some deprecation warnings like “easy_install command is deprecated” but this will not cause any issues for GPMsDB-tk.
 
 GPMsDB-tk requires ~7 GB of external data that needs to be downloaded from Zenodo (DOI: [10.5281/zenodo.8245428](https://zenodo.org/record/8245428)) and unarchived:
 

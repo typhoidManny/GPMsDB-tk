@@ -32,6 +32,7 @@ def PeakLoader(inputFile, minimum):
         lineSplit = line.split()
         if lineSplit[0] == '':
             continue
+        #This is checking for metadata in the peak file. add any other clean ups necessary for your peak files here.
         elif 'COM=' in lineSplit[0]:
             com = lineSplit[0].strip().replace("COM=", "")
         else:
